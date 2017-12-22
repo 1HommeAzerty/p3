@@ -13,38 +13,34 @@ class Maze:
     with open(self.file, "r") as file:
       level1 = []
       free_positions = []
-
-      for line in file:      #parcours des lignes
+           
+      for i, line in enumerate(file):      #parcours des lignes
         line_lvl = []
         
-        for sprite in line: #parcours de chaque element
+        for j, sprite in enumerate(line): #parcours de chaque element          
           if sprite != '\n':
             line_lvl.append(sprite)
-          #if sprite == " ":
-          #  free_positions.append((i, j))      
+          if sprite == " ":
+            free_positions.append((i, j))
+            
         level1.append(line_lvl)
 
       self.structure = level1
-    #return level1
+      #self.path = free_positions
+      print(free_positions)
 
   def position_randomly(self, display):
-    pass  
+    pass
     
-  def getdisplay(self):   
+  def getdisplay(self):
     return maze1
-    #for sprite in line_lvl:
-      #
-    #pass
-    #return (level1)
 
   def display(self):
-    for line in self.structure: 
+    for line in self.structure:
       print("".join(line))
 
 def main():
   maze1 = Maze("level1.txt")
   maze1.generate()
   maze1.display()
-  #maze1 = Maze("level1.txt")
-  #print (maze1)
 main()
