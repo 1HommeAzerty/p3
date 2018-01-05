@@ -19,18 +19,17 @@ class Maze:
 
 class Mac:
 	"""docstring for Mac"""
-	def __init__(self):
-		self.position = arg
+	def __init__(self, maze):
+		self.maze = maze
+		self.position = self.maze.getInitialPosition()
 	 
 	def show():
-	 	pass
+		pass
 	def move(self, direction):
-		event keydown
-		up pos_y = -1
-		down pos_y = +1
-		right pos_x = +1
-		left pos_x = -1
-
+		if not self.maze.is_wall(position à calculer):
+			# tu peux te déplacer
+			if self.maze.is_loot(position de mac gyver):
+				# ramasser l'objet
 
 
 class Loot:
