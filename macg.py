@@ -1,51 +1,59 @@
-class Maze:
-	"""docstring for maze"""
-	def __init__(self, arg):
-		self.arg = arg
-	# path, walls + guardian
-	
-	def generate(self):
-		#with open file as level
-			level1 = []
-			for line in level:      #parcours des lignes
-				line_lvl = []
-				for sprite in line: #parcours de chaque element
-	
-
-	def getdisplay(self):
-		pass
-
-
+#! /usr/bin/env python3
+# coding: utf-8
 
 class Mac:
-	"""docstring for Mac"""
-	def __init__(self):
-		self.position = arg
-	 
-	def show():
-	 	pass
-	def move(self, direction):
-		event keydown
-		up pos_y = -1
-		down pos_y = +1
-		right pos_x = +1
-		left pos_x = -1
+    def __init__(self, maze):
+        self.maze = maze
+        self.position = self.maze.get_mac_position()
 
+        
+    def move_right(self):
+        
+        #print(self.position)
+        (x, y) = self.position 
+        
+        if y < 14 : 
+        #SI la position à droite n'est pas un mur FAIRE
+            if not self.maze.is_wall(x, y + 1):
+                self.position = (x, y + 1)
+                self.maze.move_mac(self.position)
+            else:
+                pass
 
+    def move_left(self):
 
-class Loot:
-	"""docstring for loot"""
-	def __init__(self, maze):
-		self.maze = maze
+        (x, y) = self.position
 
-	
-			#random position on path
-			#if mac position = item position item goes to inventory
+        if 0 < y < 14 : 
+        #SI la position à droite n'est pas un mur FAIRE
+            if not self.maze.is_wall(x, y - 1):
+                self.position = (x, y - 1)
+                self.maze.move_mac(self.position)
+            else:
+                pass
 
-class Game:
-	"""docstring for Game"""
-	def __init__(self, arg):
-	self.arg = arg
+    def move_up(self):
 
-	def start():
-																												
+        (x, y) = self.position
+
+        if 0 < x < 14 : 
+        #SI la position à droite n'est pas un mur FAIRE
+            if not self.maze.is_wall(x -1, y):
+                self.position = (x -1, y)
+                self.maze.move_mac(self.position)
+            else:
+                #print("YOu can't go this way")
+                pass
+
+    def move_down(self):
+
+        (x, y) = self.position
+
+        if 0 < x < 14 : 
+        #SI la position à droite n'est pas un mur FAIRE
+            if not self.maze.is_wall(x + 1, y):
+                self.position = (x + 1, y)
+                self.maze.move_mac(self.position)
+            else:
+                print("YOu can't go this way")
+                pass
