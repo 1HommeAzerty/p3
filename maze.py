@@ -26,11 +26,11 @@ class Maze:
                         line_lvl.append(sprite)
                     if sprite == " ":
                         free_positions.append((i, j))
-                    if sprite == 'x':
+                    elif sprite == 'x':
                         wall_positions.append((i,j))
-                    if sprite == 'M':
+                    elif sprite == 'M':
                         mac_position = i, j
-                    if sprite == 'G':
+                    elif sprite == 'G':
                         guardian_position = i, j
                 level1.append(line_lvl)
 
@@ -54,11 +54,10 @@ class Maze:
         actual_position = self.get_mac_position()
         (x, y) = actual_position
         self.structure[x][y] = ' '
-        print(actual_position)
         (x, y) = new_position
         self.structure[x][y] = 'M'
-        self.mac_pos = new_position
-        print(new_position)
+        self.mac_position = new_position
+
 
 
     def is_wall (self, x, y):
