@@ -6,8 +6,9 @@ class Mac:
         self.maze = maze
         self.position = self.maze.get_mac_position()
         self.item_pos = self.maze.get_item_pos()
+        self.guardian_pos = self.maze.get_guardian_position()
+        self.item_count = 0
 
-        
     def move_right(self):
         
         (x, y) = self.position 
@@ -60,8 +61,39 @@ class Mac:
                 print("You can't go this way")
                 pass
 
-    def pick_up(self, item_pos):
-        #print (self.item_pos)
+    def pick_up(self): 
         for position in self.item_pos:
             if self.position == position:
                 print('I got it !!')
+                self.item_pos.remove(position)
+                self.item_count += 1
+    
+    def get_item_count(self):
+        print(self.item_count)
+
+    def meet_guardian(self):
+        (x, y) = self.guardian_pos
+
+        if (x + 1, y) == self.position:
+            if self.item_count != 3:
+                return False
+            elif self.item_count == 3:
+                return True
+
+        elif (x - 1, y) == self.position:
+            if self.item_count != 3:
+                return False
+            elif self.item_count == 3:
+                return True
+
+        elif (x, y + 1) == self.position:
+            if self.item_count != 3:
+                return False
+            elif self.item_count == 3:
+                return True
+
+        elif (x, y - 1) == self.position:
+            if self.item_count != 3:
+                return False
+            elif self.item_count == 3:
+                return True
