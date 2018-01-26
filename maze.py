@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 # coding: utf-8
-import random
 
+import random
 
 class Maze:
     """docstring for maze"""
@@ -46,14 +46,14 @@ class Maze:
         positions = random.sample(self.paths, k)
         for position, item in zip(positions, items):
             (x, y) = position
-            self.structure[x][y] = item
+            self.structure[x][y] = item #item.display
             self.item_pos.append(position)
         
     def get_item_pos(self):
         return self.item_pos
 
     def get_mac_position(self):
-        return self.mac_position 
+        return self.mac_position
 
     def get_guardian_position(self):
         return self.guardian_position
@@ -66,9 +66,11 @@ class Maze:
         self.structure[x][y] = 'M'
         self.mac_position = new_position
 
-
     def is_wall (self, x, y):
-        return (x, y) in self.wall_positions 
+        return (x, y) in self.wall_positions
+
+    def walls_pos(self):
+        return self.wall_positions
 
     def getdisplay(self):
         return self.structure
