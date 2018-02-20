@@ -1,67 +1,109 @@
-#! /usr/bin/env python3
+#! /usr/bin/env py_athon3
 # coding: utf-8
 
+"""In charge of the character's actions.
+
+"""
 class Mac:
+
+    """Uses positions to manage the character's actions
+    movements in all directions if possible
+    method to pick up items
+    end game conditions
+
+    """
+
     def __init__(self, maze):
         self.maze = maze
         self.position = self.maze.get_mac_position()
         self.item_pos = self.maze.get_item_pos()
+        self.guardian_pos = self.maze.get_guardian_position()
+        self.item_count = 0
 
-        
     def move_right(self):
-        
-        (x, y) = self.position 
-        
-        if y < 14 :
-        #SI la position à droite n'est pas un mur FAIRE
-            if not self.maze.is_wall(x, y + 1):
-                self.position = (x, y + 1)
+        """Checks the structure limits and walls
+        Moves Mac to the right if possible
+
+        """
+        (x_a, y_a) = self.position
+        if y_a < 14:
+            if not self.maze.is_wall(x_a, y_a + 1):
+                self.position = (x_a, y_a + 1)
                 self.maze.move_mac(self.position)
             else:
                 print("You can't go this way")
-                pass
 
     def move_left(self):
+        """Checks the structure limits and walls
+        Moves Mac to the left if possible
 
-        (x, y) = self.position
-
-        if 0 < y < 14 : 
-        #SI la position à gauche n'est pas un mur FAIRE
-            if not self.maze.is_wall(x, y - 1):
-                self.position = (x, y - 1)
+        """
+        (x_a, y_a) = self.position
+        if 0 < y_a < 14:
+            if not self.maze.is_wall(x_a, y_a - 1):
+                self.position = (x_a, y_a - 1)
                 self.maze.move_mac(self.position)
             else:
                 print("You can't go this way")
-                pass
 
     def move_up(self):
+        """Checks the structure limits and walls
+        Moves Mac up if possible
 
-        (x, y) = self.position
-
-        if 0 < x < 14 : 
-        #SI la position au dessus n'est pas un mur FAIRE
-            if not self.maze.is_wall(x -1, y):
-                self.position = (x -1, y)
+        """
+        (x_a, y_a) = self.position
+        if 0 < x_a < 14:
+            if not self.maze.is_wall(x_a -1, y_a):
+                self.position = (x_a -1, y_a)
                 self.maze.move_mac(self.position)
             else:
-                print("You can't go this way")
-                pass
+                print("You can't go up")
 
     def move_down(self):
+        """Checks the structure limits and walls
+        Moves Mac down if possible
 
-        (x, y) = self.position
-
-        if 0 < x < 14 : 
-        #SI la position au dessous n'est pas un mur FAIRE
-            if not self.maze.is_wall(x + 1, y):
-                self.position = (x + 1, y)
+        """
+        (x_a, y_a) = self.position
+        if 0 < x_a < 14:
+            if not self.maze.is_wall(x_a + 1, y_a):
+                self.position = (x_a + 1, y_a)
                 self.maze.move_mac(self.position)
             else:
-                print("You can't go this way")
-                pass
+                print("You can't go down")
 
-    def pick_up(self, item_pos):
-        #print (self.item_pos)
+    def pick_up(self):
+        """Add to a counter, and remove the item position if Mac walks on it"""
         for position in self.item_pos:
             if self.position == position:
                 print('I got it !!')
+                self.item_pos.remove(position)
+                self.item_count += 1
+
+    def meet_guardian(self):
+        """Checks the item count if Mac gets in the case next to Guardian"""
+        (x_a, y_a) = self.guardian_pos
+
+        if (x_a + 1, y_a) == self.position:
+            if self.item_count != 3:
+                return False
+            elif self.item_count == 3:
+                return True
+
+        elif (x_a - 1, y_a) == self.position:
+            if self.item_count != 3:
+                return False
+            elif self.item_count == 3:
+                return True
+
+        elif (x_a, y_a + 1) == self.position:
+            if self.item_count != 3:
+                return False
+            elif self.item_count == 3:
+                return True
+
+        elif (x_a, y_a - 1) == self.position:
+            if self.item_count != 3:
+                return False
+            elif self.item_count == 3:
+                return True
