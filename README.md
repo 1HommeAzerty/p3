@@ -11,5 +11,14 @@ arrow keys -3 items are placed randomly in the maze -The game ends if the player
 picks up all items and gets near the guardian - the game is lost if the player
 didn't pick up all items
 
+
+How to install:
+- Install Python 3.6.3
+- to install the virtual environement in command line enter: pip install virtualenv 
+- then source env/bin/activate
+- install Pygame with the line:  pip install -r requirements.txt
+
+
 Plot: The international assassin Murdoc managed to capture his archnemesis
-MacGyver. He locked him up in a maze
+MacGyver. He locked him up in a maze, but he didn't expect that Macgyver 
+would find useful items scattered all over the place.
